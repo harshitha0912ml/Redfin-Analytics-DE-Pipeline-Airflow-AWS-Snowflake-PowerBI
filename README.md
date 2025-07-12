@@ -36,6 +36,7 @@ Snowflake as the centralized cloud data warehouse, Snowpipe for continuous data 
 3. **Loading Transformed Data to Snowflake using Snowpipe**:  Snowpipe is configured to continuously monitor the transformed/ folder in the S3 bucket. As new files arrive, they are automatically loaded into a staging table in Snowflake for further analysis.
 4. **Reporting with Power BI**: Power BI is connected directly to the Snowflake warehouse. Business users can build interactive dashboards to visualize key Insights.
 <img width="821" height="375" alt="image" src="https://github.com/user-attachments/assets/478a5a58-dafa-42cb-9f05-e9bc7917cff7" />
+
 *Figure 2 : Sample Visualization Dashboard Via PowerBI*
 
 
