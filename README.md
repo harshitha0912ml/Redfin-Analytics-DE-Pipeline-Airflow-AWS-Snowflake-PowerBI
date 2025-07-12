@@ -13,12 +13,12 @@ Snowflake as the centralized cloud data warehouse, Snowpipe for continuous data 
 
 ## Services Used
 
-**Amazon S3** : Amazon S3 is a scalable object storage service used to store raw, transformed, and analytics-ready data. 
-**Amazon EC2**: EC2 provides resizable compute capacity in the cloud. It is used to host and run custom Python scripts and the Apache Airflow instance responsible for orchestrating the ETL pipeline.
-**Apache Airflow**: Apache Airflow is an open-source workflow orchestration tool. 
-**Snowflake**: Snowflake is a cloud-native data warehouse used to store and analyze large volumes of transformed real estate data. 
-**Snowpipe**: Snowpipe is a continuous data ingestion service in Snowflake. 
-**Microsoft Power BI**: Power BI is a business intelligence and data visualization tool.
+1. **Amazon S3** : Amazon S3 is a scalable object storage service used to store raw, transformed, and analytics-ready data. 
+2. **Amazon EC2**: EC2 provides resizable compute capacity in the cloud. It is used to host and run custom Python scripts and the Apache Airflow instance responsible for orchestrating the ETL pipeline.
+3. **Apache Airflow**: Apache Airflow is an open-source workflow orchestration tool. 
+4. **Snowflake**: Snowflake is a cloud-native data warehouse used to store and analyze large volumes of transformed real estate data. 
+5. **Snowpipe**: Snowpipe is a continuous data ingestion service in Snowflake. 
+6. **Microsoft Power BI**: Power BI is a business intelligence and data visualization tool.
 
 ## Dataset Used
 1. Redfin provides month-wise real estate data including metrics like median sale price, homes sold, and days on market.
@@ -32,11 +32,10 @@ Snowflake as the centralized cloud data warehouse, Snowpipe for continuous data 
 # Process Flow
 1. **Data Extraction from Redfin API → EC2 → S3** : A Python script running on an Amazon EC2 instance is scheduled via Apache Airflow to extract real estate data from the Redfin API. The fetched data ( CSV format) is saved as-is to an S3 bucket in the raw/ directory.
 2. **Data Transformation with Apache Airflow (EC2)** : Airflow triggers a transformation script that Cleans the raw data handles (missing values, standardizes formats, renames columns). The transformed data is saved back into S3 under the transformed/ directory.
-<img width="1254" height="768" alt="redfin_analytics_dag-graph (2)" src="https://github.com/user-attachments/assets/67d704a1-ca25-43f9-9c06-e244f1e007e7" />
-*Figure 2 : Apache Airflow Orchestration Graph*
+
 3. **Loading Transformed Data to Snowflake using Snowpipe**:  Snowpipe is configured to continuously monitor the transformed/ folder in the S3 bucket. As new files arrive, they are automatically loaded into a staging table in Snowflake for further analysis.
 4. **Reporting with Power BI**: Power BI is connected directly to the Snowflake warehouse. Business users can build interactive dashboards to visualize key Insights.
 <img width="821" height="375" alt="image" src="https://github.com/user-attachments/assets/478a5a58-dafa-42cb-9f05-e9bc7917cff7" />
-*Figure 3 : Sample Visualization Dashboard Via PowerBI*
+*Figure 2 : Sample Visualization Dashboard Via PowerBI*
 
 
